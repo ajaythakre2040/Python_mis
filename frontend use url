@@ -1,0 +1,113 @@
+======================
+         BASE URL
+======================
+http://localhost:8000/api/
+
+======================
+        Test API
+======================
+
+GET /test/
+- Test endpoint to verify server is running.
+
+
+======================
+      Loan App API
+======================
+
+1. Get Loan Account by ID  
+GET /loan/loan-accounts/{id}/  
+Example: /loan/loan-accounts/6/
+
+2. Check Loan Account  
+POST /loan/check-loan-account/
+
+3. Get Loan Data by Parameters  
+GET /loan/loan-account/  
+Query Params: mobileNumber, panNumber, aadharNumber, loanAccountNumber  
+Example:  
+  /loan/loan-account/?mobileNumber=&panNumber=&aadharNumber=&loanAccountNumber=LN123456789122
+
+4. Get Recent Loan Payment  
+GET /loan/recent_loan-payment  
+Query Params: loanAccount, loanId  
+Example:  
+  /loan/recent_loan-payment?loanAccount=&loanId=L123
+
+5. Customer Login Search
+POST /loan/customer_login/
+======================
+     User App API
+======================
+
+👤 AUTH & USER MANAGEMENT
+
+1. Register a New User  
+POST /users/
+
+2. Login  
+POST /users/login/
+
+3. Logout  
+POST /users/logout/
+
+4. Refresh Token  
+POST /users/token/refresh/
+
+5. Reset Password  
+POST /users/reset-password/  
+Example: http://localhost:8000/api/users/reset-password/
+
+6. Search Users  
+GET /users/search/?query=
+
+7. Get All Registered Users  
+GET /users/
+
+8. Get User by ID  
+GET /users/{id}/  
+Example: /users/1/
+
+9. Edit User  
+PUT /users/{id}/  
+Example: /users/3/
+
+10. Delete User  
+DELETE /users/{id}/  
+Example: /users/3/
+
+11. Count Users  
+GET /users/count/
+
+
+🗝️ SESSION MANAGEMENT
+
+12. Create Session  
+POST /users/sessions/  
+Body:
+{
+  "user_id": 1,
+  "joining_date": "2025-06-06",
+  "months": 3
+}
+
+13. Regenerate Session Key  
+PUT /users/sessions/regenerate-key/{id}/  
+Example: /users/sessions/regenerate-key/1/
+
+14. Update Session Status  
+PUT /users/sessions/update-status/{id}/  
+Example: /users/sessions/update-status/1/  
+Body:
+{
+  "is_active": true
+}
+
+15. Renew Session  
+PUT /users/sessions/renew-session/{id}/  
+Example: /users/sessions/renew-session/1/  
+Body:
+{
+  "joining_date": "2025-06-06",
+  "months": 2
+}
