@@ -762,7 +762,11 @@ class CustomerAddressSearchView(APIView):
 
             final_results = exact_matches + fuzzy_matches
             final_results = final_results[:15]
-
+            for record in final_results:
+                record.pop("exact_match_score", None)
+                record.pop("fuzzy_match_score", None)
+                record.pop("match_score", None)
+                record.pop("match_type", None)
             log_session_key_usage(request, endpoint_name, status="success")
 
             if not final_results:
